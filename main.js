@@ -1,6 +1,10 @@
 const _ = require('lodash')
+
+// where GROUP1 could be <data_entity> such as "users"
 GROUP1 = 'GROUP1';
+    // each function in this level corelates with the spcific entity (e.g. user authentication)
     BIGGER_THAN = 'BIGGER_THAN';
+        // each logical case for each function will be enlisted in this level, such as "ACCESS_APPROVED"/"ACCESS_DENIED"
         EQ='EQ';
         NA='NA';
     OTHER_FUNC = 'OTHER_FUNC';
@@ -29,7 +33,9 @@ const switcher_init = () => {
         },
         _gc: () => {
             return (Case, ...args) => {
-                // this is a global functionality group controller, return a function that is able to pick a controller
+                // this is a global functionality group controller, return a function that is able to pick a controller,
+                // take note that in each level only the first argument is used, this way the parameters reduced graduall
+                // down to the actuall function in each functionality group and their controllers
                 return self[`${Case}_controller`](...args)
             }
         },
@@ -109,8 +115,3 @@ const switcher_init = () => {
     const switcher2 = switcher_init()._gc()
 
 })();
-
-// (function() {
-//     console.log(switcher.true)
-//     return
-// })();
