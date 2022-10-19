@@ -23,6 +23,7 @@ const switcher_init = () => {
             //         return stuff.toString()
             //     return (!!stuff).toString
             // },
+            // conditions reducer
             cr: (arr) => arr.reduce((condition, comp) => {
                 return (comp || condition)
             }, false)
@@ -32,6 +33,7 @@ const switcher_init = () => {
             arr: [],
             arr2: []
         },
+        // global controller
         _gc: () => {
             return (Case, ...args) => {
                 // this is a global functionality group controller, return a function that is able to pick a controller,
@@ -40,6 +42,7 @@ const switcher_init = () => {
                 return self[`${Case}_controller`](...args)
             }
         },
+        // controller function
         [`${GROUP1}_controller`]: (Case, ...args) => {
             // this function should be able to run whatever function in the "BIGGER_THAN" functionality group,
             // depending upon the the implementation, functions could be ran in whatever manner needed,

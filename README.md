@@ -7,6 +7,8 @@ Take a peek at "main.js" -> npm install && node main.js
 
 ### Definitions (TBD)
 - Types
+- Utils
+  - condition reducer
 - Switcher
   - Switcher/Global controller
     - Functionality-Group Controller
