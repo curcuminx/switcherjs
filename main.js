@@ -42,10 +42,17 @@ const switcher_init = () => {
 
             for(i=0; i < arr.length; i++) {
                 // we can use the "switchable" util to make whatever result useful to the switcher
-                res = (!arr[i]);
-                res = (!!arr[i] || arr[i] < x).toString();
-                console.log(self[BIGGER_THAN][res])
-                resArr.push(res)
+                flag = false;
+                flag = flag || (!arr[i] && NA);
+                flag = flag || (arr[i] > x);
+                flag = flag || (arr[i] < x);
+                flag = flag || EQ;
+
+                self[BIGGER_THAN][flag](
+                (res) => {
+                    console.log(self[BIGGER_THAN][res])
+                    resArr.push(res)
+                })
             }
 
             // an example for a self-provoking behaviour in a switcher
@@ -53,7 +60,7 @@ const switcher_init = () => {
         },
         [`${OTHER_FUNC}_func`]: (x) => { return },
         [BIGGER_THAN]: {
-            true: "lt",
+            true: (cb) => { cb("lt") && return "lt"},
             false: "bt",
             [EQ]: "eq"
             [NA]: "NA"
